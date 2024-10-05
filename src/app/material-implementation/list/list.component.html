@@ -1,0 +1,46 @@
+
+<div class="container">
+    <h1>Associate Listing</h1>
+    <button (click)="functionAdd()" class="btn btn-add">
+      Add Associate
+    </button>
+</div>
+
+
+  <table *ngIf="(associates$|async) as associates">
+    <thead>
+      <tr>
+        <th>Id</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Phone</th>
+        <th>Type</th>
+        <th>Address</th>
+        <th>Associate Group</th>
+        <th>Status</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let associate  of associates">
+        <td>{{associate.id}}</td>
+        <td>{{associate.name}}</td>
+        <td>{{associate.email}}</td>
+        <td>{{associate.phone}}</td>
+        <td>{{associate.type}}</td>
+        <td>{{associate.address}}</td>
+        <td>{{associate.associateGroup}}</td>
+        <td>{{associate.status == true ? 'Active': 'In Active' }}</td>
+        <td>
+          <button class="btn btn-edit" (click)="functionEdit(associate.id)">Edit</button>
+          &nbsp;
+          <button class="btn btn-delete" (click)="functionDelete(associate.id)">Delete</button>
+        </td>
+     
+      </tr>
+    </tbody>
+  </table>
+
+
+
+

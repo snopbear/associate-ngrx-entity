@@ -1,0 +1,24 @@
+{
+  "associate": [
+    {
+      "id": 2,
+      "name": "Mohammed test",
+      "email": "snopbear@gmail.com",
+      "phone": "889739252",
+      "associateGroup": "level1",
+      "address": "Popowicka 70 (ul), 54-237 Wrocław",
+      "type": "SUPPLIER",
+      "status": true
+    },
+    {
+      "id": 3,
+      "name": "Mohammed Assaf",
+      "email": "snopbear@gmail.com",
+      "phone": "01115506529",
+      "associateGroup": "level1",
+      "address": "Carrer Costa Pacheco, 39, 08035 Barcelona 1.1",
+      "type": "CUSTOMER",
+      "status": true
+    }
+  ]
+}
