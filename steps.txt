@@ -6,3 +6,10 @@ ng add @ngrx/store-devtools@latest
 
 
 ng add @angular/material
+
+
+
+---------------------------------------------
+
+1- in associates model  interface extent entity 
+2- in associates state create adapter 

@@ -6,7 +6,9 @@
     </button>
 </div>
 
-
+<div *ngIf="(errorMessage$ | async) as error"> 
+ <h6>{{error}}</h6>
+</div>
   <table *ngIf="(associates$|async) as associates">
     <thead>
       <tr>

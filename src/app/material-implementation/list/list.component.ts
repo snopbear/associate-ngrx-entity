@@ -4,7 +4,7 @@ import { AddComponent } from '../add/add.component';
 import { IAssociates } from "../../model/associates";
 import { Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
-import { getAssociateList } from '../../store/associate/associate.selector';
+import { getAssociateList, getErrorMessage } from '../../store/associate/associate.selector';
 import { AsyncPipe, NgFor, NgIf } from '@angular/common';
 import { deleteAssociate, getAssociate, loadAssociate, openPopup } from '../../store/associate/associate.actions';
 @Component({
@@ -12,18 +12,16 @@ import { deleteAssociate, getAssociate, loadAssociate, openPopup } from '../../s
   templateUrl: './list.component.html',
   styleUrls: ['./list.component.scss'],
   standalone: true,
-  imports: [
-
-    AsyncPipe,
-    NgIf,
-    NgFor,
-  ],
+  imports: [AsyncPipe, NgIf, NgFor],
 })
 export class ListComponent implements OnInit {
   associates$!: Observable<IAssociates[]>;
+  errorMessage$!:Observable<string>;
+ 
   constructor(private dialog: MatDialog, private store: Store) {
     this.store.dispatch(loadAssociate());
     this.associates$ = this.store.select(getAssociateList);
+    this.errorMessage$ = this.store.select(getErrorMessage);
   }
 
   ngOnInit() {}
@@ -37,15 +35,12 @@ export class ListComponent implements OnInit {
     this.openPopupFunc(code, 'Edit Association');
   }
   functionDelete(id: number) {
-    if(confirm("Are you sure")){
+    if (confirm('Are you sure')) {
       this.store.dispatch(deleteAssociate({ code: id }));
     }
-      
-  
   }
-    
+
   openPopupFunc(code: number, title: string) {
-    this.store.dispatch(openPopup())
     this.dialog.open(AddComponent, {
       width: '50%',
       enterAnimationDuration: '1000ms',

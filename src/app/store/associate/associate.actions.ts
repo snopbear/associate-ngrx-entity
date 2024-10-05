@@ -1,6 +1,7 @@
 import { createAction, props } from '@ngrx/store';
 import { IAssociates } from '../../model/associates';
 import { AssociateActionsType } from './associate.types';
+import { Update } from '@ngrx/entity';
 
 //load
 export const loadAssociate = createAction(AssociateActionsType.LOAD_ASSOCIATE);
@@ -29,9 +30,17 @@ export const updateAssociate = createAction(
   AssociateActionsType.UPDATE_ASSOCIATE,
   props<{ inputData: IAssociates }>()
 );
+
+//regular implementation
+// export const updateAssociateSuccess = createAction(
+//   AssociateActionsType.UPDATE_ASSOCIATE_SUCCESS,
+//   props<{ inputData: Associates }>()
+// );
+
+
 export const updateAssociateSuccess = createAction(
   AssociateActionsType.UPDATE_ASSOCIATE_SUCCESS,
-  props<{ inputData: IAssociates }>()
+  props<{ inputData:Update< IAssociates> }>()
 );
 
 export const deleteAssociate = createAction(

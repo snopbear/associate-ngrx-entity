@@ -4,6 +4,8 @@ import * as associateAction from './associate.actions';
 import { catchError, exhaustMap, of, map, switchMap, concatMap, mergeMap } from 'rxjs';
 import { AssociateService } from '../../service/associate.service';
 import { showAlert } from '../../common/app.actions';
+import { Update } from '@ngrx/entity';
+import { IAssociates } from '../../model/associates';
 
 @Injectable()
 export class AssociateEffects {
@@ -56,7 +58,7 @@ export class AssociateEffects {
       ofType(associateAction.addAssociate),
       concatMap((action) => {
         return this.service.create(action.inputData).pipe(
-          switchMap((data) => {
+          concatMap((data) => {
             return of(
               associateAction.addAssociateSuccess({
                 inputData: action.inputData,
@@ -80,19 +82,54 @@ export class AssociateEffects {
     )
   );
 
+  // for regular implementation
+
+  //   editAssociate$ = createEffect(() =>
+  //     this.action$.pipe(
+  //       ofType(associateAction.updateAssociate),
+  //       switchMap((action) => {
+  //         return this.service.update(action.inputData).pipe(
+  //           concatMap((data) => {
+  //             return of(
+  //               associateAction.updateAssociateSuccess({
+  //                 inputData: action.inputData,
+  //               }),
+
+  //               showAlert({
+  //                 message: 'Associate updated successfully',
+  //                 resultType: 'pass',
+  //               })
+  //             );
+  //           }),
+  //           catchError((_error) =>
+  //             of(
+  //               showAlert({
+  //                 message: 'failed to create a associate',
+  //                 resultType: 'fail',
+  //               })
+  //             )
+  //           )
+  //         );
+  //       })
+  //     )
+  //   );
+
   editAssociate$ = createEffect(() =>
     this.action$.pipe(
       ofType(associateAction.updateAssociate),
-      switchMap((action) => {
+      concatMap((action) => {
         return this.service.update(action.inputData).pipe(
           concatMap((data) => {
+            const updatedRecord: Update<IAssociates> = {
+              id: action.inputData.id,
+              changes: action.inputData,
+            };
             return of(
               associateAction.updateAssociateSuccess({
-                inputData: action.inputData,
+                inputData: updatedRecord,
               }),
-
               showAlert({
-                message: 'Associate updated successfully',
+                message: 'UpDated successfully.',
                 resultType: 'pass',
               })
             );
@@ -100,7 +137,7 @@ export class AssociateEffects {
           catchError((_error) =>
             of(
               showAlert({
-                message: 'failed to create a associate',
+                message: 'Failed to update CUSTOMER',
                 resultType: 'fail',
               })
             )
@@ -113,7 +150,7 @@ export class AssociateEffects {
   deleteAssociate$ = createEffect(() =>
     this.action$.pipe(
       ofType(associateAction.deleteAssociate),
-      switchMap((action) => {
+      mergeMap((action) => {
         return this.service.delete(action.code).pipe(
           mergeMap((data) => {
             return of(
