@@ -1,4 +1,16 @@
 {
+   "book": [
+    {
+      "id": 2,
+      "name": "BB",
+      "authEmail": "snopbear@gmail.com",
+      "authPhone": "889739252",
+      "bookGroup": "level1",
+      "authAddress": "Popowicka 70 (ul), 54-237 Wrocław",
+      "type": "SUPPLIER",
+      "status": true
+    }
+  ],
   "associate": [
     {
       "id": 2,

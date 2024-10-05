@@ -2,7 +2,7 @@
 // Unit tests for: Getbycode
 
 
-import { IAssociates } from '../../model/associates';
+import { IAssociates } from '../../store/associate/associates';
 import { AssociateService } from '../associate.service';
 
 

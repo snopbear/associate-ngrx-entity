@@ -1,5 +1,5 @@
 import { createEntityAdapter } from "@ngrx/entity";
-import { IAssociateModel, IAssociates } from "../../model/associates";
+import { IAssociateModel, IAssociates } from "./associates";
 
 export const associateAdapter=createEntityAdapter<IAssociates>(
     {

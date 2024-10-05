@@ -1,28 +1,29 @@
 import { inject, Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import * as associateAction from './associate.actions';
+import * as bookAction from './book.actions';
 import { catchError, exhaustMap, of, map, switchMap, concatMap, mergeMap } from 'rxjs';
-import { AssociateService } from '../../service/associate.service';
 import { showAlert } from '../../common/app.actions';
 import { Update } from '@ngrx/entity';
-import { IAssociates } from './associates';
+import { IBook } from './book';
+import { BookService } from '../../service/book/book.service';
+
 
 @Injectable()
-export class AssociateEffects {
-  private service = inject(AssociateService);
+export class BookEffects {
+  private service = inject(BookService);
   private action$ = inject(Actions);
 
-  loadAssociate$ = createEffect(() =>
+  loadBook$ = createEffect(() =>
     this.action$.pipe(
-      ofType(associateAction.loadAssociate),
+      ofType(bookAction.loadBook),
       exhaustMap((action) => {
         return this.service.getAll().pipe(
           map((data) => {
-            return associateAction.loadAssociateSuccess({ list: data });
+            return bookAction.loadBookSuccess({ list: data });
           }),
           catchError((_error) =>
             of(
-              associateAction.loadAssociateFail({
+              bookAction.loadBookFail({
                 errorMessage: _error.message,
               })
             )
@@ -32,13 +33,13 @@ export class AssociateEffects {
     )
   );
 
-  getAssociate$ = createEffect(() =>
+  getBook$ = createEffect(() =>
     this.action$.pipe(
-      ofType(associateAction.getAssociate),
+      ofType(bookAction.getBook),
       switchMap((action) => {
         return this.service.getByCode(action.id).pipe(
           map((data) => {
-            return associateAction.getAssociateSuccess({ obj: data });
+            return bookAction.getBookSuccess({ obj: data });
           }),
           catchError((_error) =>
             of(
@@ -53,18 +54,18 @@ export class AssociateEffects {
     )
   );
 
-  addAssociate$ = createEffect(() =>
+  addBook$ = createEffect(() =>
     this.action$.pipe(
-      ofType(associateAction.addAssociate),
+      ofType(bookAction.addBook),
       concatMap((action) => {
         return this.service.create(action.inputData).pipe(
           concatMap((data) => {
             return of(
-              associateAction.addAssociateSuccess({
+              bookAction.addBookSuccess({
                 inputData: action.inputData,
               }),
               showAlert({
-                message: 'Associate added successfully',
+                message: 'Book added successfully',
                 resultType: 'pass',
               })
             );
@@ -82,19 +83,18 @@ export class AssociateEffects {
     )
   );
 
-
-  editAssociate$ = createEffect(() =>
+  editBook$ = createEffect(() =>
     this.action$.pipe(
-      ofType(associateAction.updateAssociate),
+      ofType(bookAction.updateBook),
       concatMap((action) => {
         return this.service.update(action.inputData).pipe(
           concatMap((data) => {
-            const updatedRecord: Update<IAssociates> = {
+            const updatedRecord: Update<IBook> = {
               id: action.inputData.id,
               changes: action.inputData,
             };
             return of(
-              associateAction.updateAssociateSuccess({
+              bookAction.updateBookSuccess({
                 inputData: updatedRecord,
               }),
               showAlert({
@@ -116,19 +116,19 @@ export class AssociateEffects {
     )
   );
 
-  deleteAssociate$ = createEffect(() =>
+  deleteBook$ = createEffect(() =>
     this.action$.pipe(
-      ofType(associateAction.deleteAssociate),
+      ofType(bookAction.deleteBook),
       mergeMap((action) => {
         return this.service.delete(action.code).pipe(
           mergeMap((data) => {
             return of(
-              associateAction.deleteAssociateSuccess({
+              bookAction.deleteBookSuccess({
                 code: action.code,
               }),
 
               showAlert({
-                message: 'Associate Delete successfully',
+                message: 'Book Delete successfully',
                 resultType: 'pass',
               })
             );

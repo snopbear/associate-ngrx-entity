@@ -1,5 +1,5 @@
 import { createAction, props } from '@ngrx/store';
-import { IAssociates } from '../../model/associates';
+import { IAssociates } from './associates';
 import { AssociateActionsType } from './associate.types';
 import { Update } from '@ngrx/entity';
 
@@ -28,7 +28,7 @@ export const addAssociateSuccess = createAction(
 //update
 export const updateAssociate = createAction(
   AssociateActionsType.UPDATE_ASSOCIATE,
-  props<{ inputData: IAssociates }>()
+  props<{ inputData: IAssociates }>() 
 );
 
 export const updateAssociateSuccess = createAction(

@@ -1,5 +1,5 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
-import { IAssociateModel } from '../../model/associates';
+import { IAssociateModel } from './associates';
 import { associateAdapter } from './associate.state';
 import { state } from '@angular/animations';
 

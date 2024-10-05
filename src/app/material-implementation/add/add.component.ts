@@ -17,7 +17,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatSelectModule } from '@angular/material/select';
-import { IAssociates } from '../../model/associates';
+import { IAssociates } from '../../store/associate/associates';
 import { NgIf } from '@angular/common';
 import { Store } from '@ngrx/store';
 import {

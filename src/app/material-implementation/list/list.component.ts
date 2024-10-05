@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { AddComponent } from '../add/add.component';
-import { IAssociates } from "../../model/associates";
+import { IAssociates } from "../../store/associate/associates";
 import { Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { getAssociateList, getErrorMessage } from '../../store/associate/associate.selector';
