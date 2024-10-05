@@ -82,37 +82,6 @@ export class AssociateEffects {
     )
   );
 
-  // for regular implementation
-
-  //   editAssociate$ = createEffect(() =>
-  //     this.action$.pipe(
-  //       ofType(associateAction.updateAssociate),
-  //       switchMap((action) => {
-  //         return this.service.update(action.inputData).pipe(
-  //           concatMap((data) => {
-  //             return of(
-  //               associateAction.updateAssociateSuccess({
-  //                 inputData: action.inputData,
-  //               }),
-
-  //               showAlert({
-  //                 message: 'Associate updated successfully',
-  //                 resultType: 'pass',
-  //               })
-  //             );
-  //           }),
-  //           catchError((_error) =>
-  //             of(
-  //               showAlert({
-  //                 message: 'failed to create a associate',
-  //                 resultType: 'fail',
-  //               })
-  //             )
-  //           )
-  //         );
-  //       })
-  //     )
-  //   );
 
   editAssociate$ = createEffect(() =>
     this.action$.pipe(

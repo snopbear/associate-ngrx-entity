@@ -2,7 +2,7 @@
   "associate": [
     {
       "id": 2,
-      "name": "Mohammed test",
+      "name": "BB",
       "email": "snopbear@gmail.com",
       "phone": "889739252",
       "associateGroup": "level1",
@@ -12,7 +12,7 @@
     },
     {
       "id": 3,
-      "name": "Mohammed Assaf",
+      "name": "Assaf",
       "email": "snopbear@gmail.com",
       "phone": "01115506529",
       "associateGroup": "level1",

@@ -31,13 +31,6 @@ export const updateAssociate = createAction(
   props<{ inputData: IAssociates }>()
 );
 
-//regular implementation
-// export const updateAssociateSuccess = createAction(
-//   AssociateActionsType.UPDATE_ASSOCIATE_SUCCESS,
-//   props<{ inputData: Associates }>()
-// );
-
-
 export const updateAssociateSuccess = createAction(
   AssociateActionsType.UPDATE_ASSOCIATE_SUCCESS,
   props<{ inputData:Update< IAssociates> }>()

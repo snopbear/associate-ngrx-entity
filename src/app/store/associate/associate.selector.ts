@@ -22,12 +22,3 @@ export const getErrorMessage = createSelector(
   getAssociateState,
   (state) => state.errorMessage
 );
-
-// export const getAssociateList = createSelector(getAssociateState, (state) => {
-
-//   return state.list;
-// });
-
-// export const getAssociate = createSelector(getAssociateState, (state) => {
-//   return state.associateObj;)
-// });

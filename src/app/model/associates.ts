@@ -14,8 +14,6 @@ export interface IAssociates {
 
 //extend entity here  the content
 export interface IAssociateModel extends EntityState<IAssociates> {
-//   list: IAssociates[];
-//   associateObj: IAssociates;
   errorMessage: string;
   isLoading: boolean;
 }

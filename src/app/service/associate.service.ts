@@ -6,7 +6,7 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root',
 })
 export class AssociateService {
-  baseurl = 'http://localhost:3000/associate0';
+  baseurl = 'http://localhost:3000/associate';
   constructor(private http: HttpClient) {}
 
   getAll() {
